@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
 import { Provider } from 'react-redux';
-import { createStore } from "redux";
 import srcApp from "./reducers";
 
 import Notes from "./components/Notes";
 import NotFound from "./components/NotFound";
 
 
-let store = createStore(srcApp);
+let store = createStore(srcApp, applyMiddleware(thunk));
 
 class App extends Component {
   render() {

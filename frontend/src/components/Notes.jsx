@@ -3,6 +3,11 @@ import {connect} from 'react-redux';
 import {notes} from "../actions";
 
 class Notes extends Component {
+
+	componentDidMount() {
+		this.props.fetchNotes();
+	}
+
 	state = {
 		text: "",
 		updateNoteId: null,
@@ -20,11 +25,10 @@ class Notes extends Component {
 	submitNote = (e) => {
 		e.preventDefault();
 		if (this.state.updateNoteId === null) {
-			this.props.addNote(this.state.text);
+			this.props.addNote(this.state.text).then(this.resetForm);
 		} else {
-			this.props.updateNote(this.state.updateNoteId, this.state.text);
+			this.props.updateNote(this.state.updateNoteId, this.state.text).then(this.resetForm);
 		}
-		this.resetForm();
 	}
 
 	render() {
@@ -77,14 +81,17 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		addNote: (text) => {
-			dispatch(notes.addNote(text));
+			return dispatch(notes.addNote(text));
 		},
 		updateNote: (id,text) => {
-			dispatch(notes.addNote(id, text));
+			return dispatch(notes.addNote(id, text));
 		},
 		deleteNote: (id) => {
 			dispatch(notes.deleteNote(id));
 		},
+		fetchNotes: () => {
+			dispatch(notes.fetchNotes());
+		}
 	}
 }
 
