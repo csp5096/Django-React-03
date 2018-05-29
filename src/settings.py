@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'dotenv',
     'webpack_loader',
     'notes',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -142,9 +143,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Webpack Loader settings
 WEBPACK_LOADER = {
     'DEFAULT': {
             'BUNDLE_DIR_NAME': 'bundles/',
             'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
         }
+}
+
+# Rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
