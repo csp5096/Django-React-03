@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {notes} from "../actions";
+import {notes, auth} from "../actions";
 
 class Notes extends Component {
 
@@ -36,6 +36,9 @@ class Notes extends Component {
 			<div>
 				<h2>Welcome to Notes!</h2>
 				<hr />
+				<div stype={{textAlign: "right"}}>
+				  {this.props.user.username} (<a onClick={this.props.logout}>logout</a>)
+				</div>
 				<h3>Add new note</h3>
 				<form onSubmit={this.submitNote}>
 				  <input 
@@ -75,11 +78,15 @@ class Notes extends Component {
 const mapStateToProps = state => {
 	return {
 		notes: state.notes,
+		user: state.auth.user,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
+		fetchNotes: () => {
+			dispatch(notes.fetchNotes());
+		},
 		addNote: (text) => {
 			return dispatch(notes.addNote(text));
 		},
@@ -89,9 +96,7 @@ const mapDispatchToProps = dispatch => {
 		deleteNote: (id) => {
 			dispatch(notes.deleteNote(id));
 		},
-		fetchNotes: () => {
-			dispatch(notes.fetchNotes());
-		}
+		logout: () => dispatch(auth.logout()),
 	}
 }
 

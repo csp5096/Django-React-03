@@ -10,6 +10,7 @@ import srcApp from "./reducers";
 import Notes from "./components/Notes";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 let store = createStore(srcApp, applyMiddleware(thunk));
 
@@ -37,6 +38,7 @@ class RootContainerComponent extends Component {
       <BrowserRouter>
         <Switch>
           <PrivateRoute exact path="/" component={Notes} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
