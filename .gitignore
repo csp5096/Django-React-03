@@ -39,3 +39,4 @@ src/production_settings.py
 *.production_settings.py
 production_settings.py
 frontend/package-lock.json
+.pytest_cache/

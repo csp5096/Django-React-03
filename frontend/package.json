@@ -51,7 +51,10 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "eject": "react-scripts eject",
+    "e2e": "cypress open",
+    "e2e-watch": "cypress run --config pageLoadTimeout=100000,watchForFileChanges=true"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -96,6 +99,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "cypress": "^3.0.1",
     "webpack-bundle-tracker": "^0.3.0"
   }
 }
