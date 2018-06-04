@@ -33,6 +33,7 @@ yarn-error.log*
 .vscode/
 /frontend/node_modules
 .frontend/node_modules
+frontend/cypress/videos/
 src/production_settings.py
 .src/production_settings.py
 *./production_settings.py
@@ -40,3 +41,4 @@ src/production_settings.py
 production_settings.py
 frontend/package-lock.json
 .pytest_cache/
+htmlcov/
